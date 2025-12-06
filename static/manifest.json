@@ -1,8 +1,8 @@
 {
   "id": "?app=v1",
-  "name": "$$LONG_APP_NAME$$",
-  "short_name": "$$SHORT_APP_NAME$$",
-  "description": "$$APP_DESCRIPTION$$",
+  "name": "PWA Starter",
+  "short_name": "PWA Starter",
+  "description": "Simple SvelteKit PWA staretr application.",
   "start_url": "/",
   "scope": "/",
   "display": "fullscreen",
