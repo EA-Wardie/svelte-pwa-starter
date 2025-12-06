@@ -128,15 +128,13 @@ self.addEventListener('notificationclick', (event) => {
 		);
 
 		if (clientList.length) {
-			for (const client of clientList) {
-				if ('focus' in client) {
-					await client.focus();
-				}
-			}
-		}
+			const client: WindowClient | null = clientList.at(0) || null;
 
-		if ('openWindow' in self.clients) {
-			await self.clients.openWindow('/');
+			if (client && 'focus' in client) {
+				await client.focus();
+			} else if ('openWindow' in self.clients) {
+				await self.clients.openWindow('/');
+			}
 		}
 	};
 
