@@ -1,2 +1,12 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+<script lang="ts">
+	let count: number = $state(0);
+</script>
+
+<section
+	style="height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;"
+>
+	<h1>
+		{count}
+	</h1>
+	<button onclick={(): number => count++}>Add Count</button>
+</section>

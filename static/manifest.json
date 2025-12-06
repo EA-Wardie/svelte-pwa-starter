@@ -1,0 +1,57 @@
+{
+  "id": "?app=v1",
+  "name": "$$LONG_APP_NAME$$",
+  "short_name": "$$SHORT_APP_NAME$$",
+  "description": "$$APP_DESCRIPTION$$",
+  "start_url": "/",
+  "scope": "/",
+  "display": "fullscreen",
+  "background_color": "#000",
+  "theme_color": "#0891b2",
+  "orientation": "any",
+  "dir": "ltr",
+  "lang": "en-US",
+  "categories": ["productivity"],
+  "icons": [
+     {
+       "src": "/icons/pwa-192x192.png",
+       "sizes": "192x192",
+       "type": "image/png",
+       "purpose": "any"
+     },
+     {
+       "src": "/icons/pwa-512x512.png",
+       "sizes": "512x512",
+       "type": "image/png",
+       "purpose": "any"
+     },
+     {
+       "src": "/icons/pwa-maskable-192x192.png",
+       "sizes": "192x192",
+       "type": "image/png",
+       "purpose": "maskable"
+     },
+     {
+       "src": "/icons/pwa-maskable-512x512.png",
+       "sizes": "512x512",
+       "type": "image/png",
+       "purpose": "maskable"
+     }
+   ],
+   "screenshots": [
+     {
+       "src": "screenshots/desktop.png",
+       "sizes": "1560x877",
+       "type": "image/png",
+       "form_factor": "wide",
+       "label": "Home screen showing main content as on desktop"
+     },
+     {
+       "src": "screenshots/mobile.png",
+       "sizes": "538x1166",
+       "type": "image/png",
+       "form_factor": "narrow",
+       "label": "Home screen showing main content as on mobile"
+     }
+   ]
+}
