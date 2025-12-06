@@ -82,7 +82,7 @@ self.addEventListener('fetch', (event: FetchEvent): void => {
 	event.respondWith(respond());
 });
 
-self.addEventListener('push', (event: PushEvent) => {
+self.addEventListener('push', (event: PushEvent): void => {
 	const data: string | null = event.data?.text() || null;
 
 	const showNotification = async (): Promise<void> => {
@@ -94,29 +94,28 @@ self.addEventListener('push', (event: PushEvent) => {
 	event.waitUntil(showNotification());
 });
 
-self.addEventListener('message', (event: ExtendableMessageEvent) => {
+self.addEventListener('message', (event: ExtendableMessageEvent): void => {
 	const type: string | null = event.data.type || null;
 
-	const showNotification = (callback: () => void): void => {
-		self.registration
-			.showNotification('PWA Starter', {
-				body: 'This is a test push notification.',
-			})
-			.finally(() => {
-				callback();
-			});
+	const showNotification = async (): Promise<void> => {
+		await self.registration.showNotification('PWA Starter', {
+			body: 'This is a test push notification.',
+			badge: '/icons/pwa-192x192.png',
+			icon: '/icons/pwa-192x192.png',
+			requireInteraction: true,
+		});
+
+		event.source?.postMessage({
+			type: 'TEST_PUSH_NOTIFICATION_HANDLED',
+		});
 	};
 
 	if (type === 'SEND_TEST_PUSH_NOTIFICATION') {
-		showNotification(() => {
-			event.source?.postMessage({
-				type: 'TEST_PUSH_NOTIFICATION_HANDLED',
-			});
-		});
+		event.waitUntil(showNotification());
 	}
 });
 
-self.addEventListener('notificationclick', (event) => {
+self.addEventListener('notificationclick', (event: NotificationEvent): void => {
 	event.notification.close();
 
 	const focusOrOpenClientWindow = async (): Promise<void> => {
