@@ -85,33 +85,24 @@ self.addEventListener('fetch', (event: FetchEvent): void => {
 self.addEventListener('push', (event: PushEvent): void => {
 	const data: string | null = event.data?.text() || null;
 
-	const showNotification = async (): Promise<void> => {
-		await self.registration.showNotification('PWA Starter', {
-			body: data || '[NO BODY]',
-		});
-	};
+	if (data) {
+		console.log(`SW received push notification with data: "${data}"`);
 
-	event.waitUntil(showNotification());
+		const showNotification = async (): Promise<void> => {
+			await self.registration.showNotification('PWA Starter', {
+				body: data || '[NO BODY]',
+			});
+		};
+
+		event.waitUntil(showNotification());
+	}
 });
 
 self.addEventListener('message', (event: ExtendableMessageEvent): void => {
 	const type: string | null = event.data.type || null;
 
-	const showNotification = async (): Promise<void> => {
-		await self.registration.showNotification('PWA Starter', {
-			body: 'This is a test push notification.',
-			badge: '/icons/pwa-192x192.png',
-			icon: '/icons/pwa-192x192.png',
-			requireInteraction: true,
-		});
-
-		event.source?.postMessage({
-			type: 'TEST_PUSH_NOTIFICATION_HANDLED',
-		});
-	};
-
-	if (type === 'SEND_TEST_PUSH_NOTIFICATION') {
-		event.waitUntil(showNotification());
+	if (type) {
+		console.log(`SW received message of type: "${type}"`);
 	}
 });
 
