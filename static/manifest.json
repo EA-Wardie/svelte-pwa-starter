@@ -40,14 +40,14 @@
    ],
    "screenshots": [
      {
-       "src": "screenshots/desktop.png",
+       "src": "screenshots/desktop.jpg",
        "sizes": "1560x877",
        "type": "image/png",
        "form_factor": "wide",
        "label": "Home screen showing main content as on desktop"
      },
      {
-       "src": "screenshots/mobile.png",
+       "src": "screenshots/mobile.jpg",
        "sizes": "538x1166",
        "type": "image/png",
        "form_factor": "narrow",
