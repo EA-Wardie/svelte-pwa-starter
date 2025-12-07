@@ -1,38 +1,69 @@
-# sv
+# PWA Starter
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+A Progressive Web App template built with SvelteKit. Features offline support with service worker caching, an
+installable app experience and a preconfigured manifest.json out-of-the-box. Perfect for quickly scaffolding modern web
+applications that work seamlessly across desktop and mobile devices.
 
-## Creating a project
+---
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Basic Components
 
-```sh
-# create a new project in the current directory
-npx sv create
+- SvelteKit with SSR disabled
+- Service worker
+- Manifest file
+- Placeholder branding & icons
 
-# create a new project in my-app
-npx sv create my-app
-```
+## Getting Started
 
-## Developing
+1. Clone repo
+2. Run `pnpm i`
+3. Replace placeholder branding (PWA Starter)
+    - `/src/app.html`
+    - `/src/service-worker.ts`
+    - `/static/manifest.json`
+    - `/src/routes/+page.svelte`
+4. Replace placeholder icons/images
+    - `/static/icons`
+    - `/static/splash_screens`
+    - `/static/screenshots`
+5. Run `pnpm dev`
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+## Asset Management
 
-```sh
-npm run dev
+PWAs require assets for the best mobile experience. The following tools are my go-to for generating these
+assets.
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+- For app icons: [Favicon Generator](https://favicon.inbrowser.app/tools/favicon-generator)
+- For iOS splash
+  screens: [PWA Icons & iOS Splash Screen Generator](https://progressier.com/pwa-icons-and-ios-splash-screen-generator)
+- Screenshots of you app can be taken using Chrome or Firefox's built-in screenshot tool, or an extension
+  like: [GoFullPage](https://chromewebstore.google.com/detail/gofullpage-full-page-scre/fdpohaocaechififmbbbbbknoalclacl)
 
-## Building
+## Demo
 
-To create a production version of your app:
+The app offers some simple demo features on the home page sush af your devices network status (a major part of PWA
+support) and a simple test push notification button
 
-```sh
-npm run build
-```
+The service worker includes some sample code for external push notifications which you can test using Chrome's dev
+tools. It also includes sample code for receiving messages from the client. These are generally sent with a `type`
+attribute.
 
-You can preview the production build with `npm run preview`.
+Of course the service worker can be changed as required.
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+## Future Integrations
+
+- Firebase Messaging for push notifications.
+- DexieJS for local first relational data storage.
+- A more opinionated approach to UI using TailwindCSS and DaisyUI.
+
+## Lastly
+
+This project uses Cloudflare for hosting out-of-the-box, but you can easily replace `@sveltejs/adapter-cloudflare` with
+any adapter you need for whatever platform you want to host your app on.
+
+---
+
+### Notice for use of LLMs
+
+Although LLMs were used in concept and design strategies, all code used in this project (apart from project generated
+code) was written by a human.
