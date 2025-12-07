@@ -38,7 +38,7 @@
 <section class="container">
 	<h1>{count}</h1>
 	<button onclick={() => count++}>Add Count</button>
-	<h3>
+	<h3 style="margin-bottom: 0;">
 		<span>Network Status:</span>
 		<span style="color: {networkStatus === 'online' ? 'green' : 'orange'}">{networkStatus}</span>
 	</h3>
