@@ -1,9 +1,12 @@
 <script lang="ts">
+	import '@khmyznikov/pwa-install';
+	import type { PWAInstallElement } from '@khmyznikov/pwa-install';
 	import { onMount } from 'svelte';
 
 	let count: number = $state(0);
 	let notificationPermission: NotificationPermission = $state('default');
 	let networkStatus: 'online' | 'offline' = $state('online');
+	let pwaInstallComponent: PWAInstallElement;
 
 	const promptForNotificationPermissions = async () => {
 		notificationPermission = await Notification.requestPermission();
@@ -19,6 +22,10 @@
 		addEventListener('offline', () => {
 			networkStatus = 'offline';
 		});
+
+		if (pwaInstallComponent && typeof pwaInstallComponent.showDialog === 'function') {
+      		pwaInstallComponent.showDialog(true);
+		}
 	});
 
 	const sendTestPushNotificationMessage = async (): Promise<void> => {
@@ -52,6 +59,8 @@
 		Send Test Push Notification
 	</button>
 </section>
+
+<pwa-install bind:this={pwaInstallComponent}></pwa-install>
 
 <style>
 
