@@ -40,18 +40,32 @@
    ],
    "screenshots": [
      {
-       "src": "screenshots/desktop.jpg",
-       "sizes": "1560x877",
+       "src": "screenshots/desktop_1.jpg",
+       "sizes": "2400x1350",
        "type": "image/png",
        "form_factor": "wide",
-       "label": "Home screen showing main content as on desktop"
+       "label": "Screenshot showing the main page as on desktop"
      },
      {
-       "src": "screenshots/mobile.jpg",
-       "sizes": "538x1166",
+       "src": "screenshots/desktop_2.jpg",
+       "sizes": "2400x1350",
+       "type": "image/png",
+       "form_factor": "wide",
+       "label": "Screenshot showing a child page as on desktop"
+     },
+     {
+       "src": "screenshots/mobile_1.jpg",
+       "sizes": "515x1144",
        "type": "image/png",
        "form_factor": "narrow",
-       "label": "Home screen showing main content as on mobile"
+       "label": "Screenshot showing the main page as on mobile"
+     },
+       {
+       "src": "screenshots/mobile_2.jpg",
+       "sizes": "515x1144",
+       "type": "image/png",
+       "form_factor": "narrow",
+       "label": "Screenshot showing a child page as on mobile"
      }
    ]
 }

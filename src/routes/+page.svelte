@@ -1,36 +1,36 @@
 <script lang="ts">
-	import '@khmyznikov/pwa-install';
-	import type { PWAInstallElement } from '@khmyznikov/pwa-install';
+	import { goto } from '$app/navigation';
+	import {
+		NetworkStatus,
+		getNetworkStatus,
+		onNetworkStatusChanged,
+	} from '$lib/network';
+	import {
+		NotificationPermissionStatus,
+		promptForNotificationPermissions,
+	} from '$lib/notifications';
 	import { onMount } from 'svelte';
 
 	let count: number = $state(0);
-	let notificationPermission: NotificationPermission = $state('default');
-	let networkStatus: 'online' | 'offline' = $state('online');
-	let pwaInstallComponent: PWAInstallElement;
-
-	const promptForNotificationPermissions = async () => {
-		notificationPermission = await Notification.requestPermission();
-	};
+	let notificationPermission: NotificationPermissionStatus = $state(
+		NotificationPermissionStatus.Default,
+	);
+	let networkStatus: NetworkStatus = $state(getNetworkStatus());
 
 	onMount(async () => {
-		await promptForNotificationPermissions();
-
-		addEventListener('online', () => {
-			networkStatus = 'online';
+		promptForNotificationPermissions((permission) => {
+			notificationPermission = permission;
 		});
 
-		addEventListener('offline', () => {
-			networkStatus = 'offline';
+		onNetworkStatusChanged((status) => {
+			networkStatus = status;
 		});
-
-		if (pwaInstallComponent && typeof pwaInstallComponent.showDialog === 'function') {
-      		pwaInstallComponent.showDialog(true);
-		}
 	});
 
 	const sendTestPushNotificationMessage = async (): Promise<void> => {
 		if ('serviceWorker' in navigator) {
-			const registration: ServiceWorkerRegistration = await navigator.serviceWorker.ready;
+			const registration: ServiceWorkerRegistration =
+				await navigator.serviceWorker.ready;
 
 			await registration.showNotification('PWA Starter', {
 				body: 'This is a test push notification.',
@@ -43,25 +43,38 @@
 </script>
 
 <section>
-	<h1>{count}</h1>
-	<button onclick={() => count++}>Add Count</button>
-	<h3>
+	<h1>Main Page</h1>
+	<h2>
 		<span>Network Status:</span>
-		<span style="color: {networkStatus === 'online' ? 'green' : 'orange'}">{networkStatus}</span>
-	</h3>
-	<h3>
+		<span
+			style="color: {networkStatus === NetworkStatus.Online
+				? 'green'
+				: 'orange'}">{networkStatus}</span
+		>
+	</h2>
+	<h2>
 		<span>Notification permissions are:</span>
-		<span style="color: {notificationPermission === 'granted' ? 'green' : 'orange'}">{notificationPermission}</span>
-	</h3>
+		<span
+			style="color: {notificationPermission ===
+			NotificationPermissionStatus.Grandted
+				? 'green'
+				: 'orange'}">{notificationPermission}</span
+		>
+	</h2>
+	<button onclick={() => count++}>Count {count}</button>
+	<br />
+	<br />
 	<button
-		disabled="{notificationPermission !== 'granted'}"
-		onclick={sendTestPushNotificationMessage}>
+		disabled={notificationPermission !==
+			NotificationPermissionStatus.Grandted}
+		onclick={sendTestPushNotificationMessage}
+	>
 		Send Test Push Notification
 	</button>
+	<br />
+	<br />
+	<button onclick={() => goto('/child')}> Go To Child Page </button>
 </section>
 
-<pwa-install bind:this={pwaInstallComponent}></pwa-install>
-
 <style>
-
 </style>
