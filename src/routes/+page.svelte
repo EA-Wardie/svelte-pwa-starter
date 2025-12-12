@@ -35,10 +35,10 @@
 	};
 </script>
 
-<section class="container">
+<section>
 	<h1>{count}</h1>
 	<button onclick={() => count++}>Add Count</button>
-	<h3 style="margin-bottom: 0;">
+	<h3>
 		<span>Network Status:</span>
 		<span style="color: {networkStatus === 'online' ? 'green' : 'orange'}">{networkStatus}</span>
 	</h3>
@@ -54,11 +54,5 @@
 </section>
 
 <style>
-    .container {
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
+
 </style>
