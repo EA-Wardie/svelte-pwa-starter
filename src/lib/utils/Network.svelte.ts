@@ -27,11 +27,6 @@ export class Network {
 		setNetworkContext(new Network());
 	}
 
-	public static kill() {
-		removeEventListener('online', getNetworkContext().online);
-		removeEventListener('offline', getNetworkContext().offline);
-	}
-
 	private online() {
 		this._status = Status.Online;
 	}

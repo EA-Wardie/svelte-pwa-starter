@@ -5,6 +5,7 @@
 	import { Network } from '$lib/utils/Network.svelte';
 	import { Push } from '$lib/utils/Push.svelte';
 	import { liveQuery } from 'dexie';
+	import { toast } from 'svelte-sonner';
 
 	let todos = liveQuery<Todo[]>(async () => await DB.todos.toArray());
 	let todo: string = $state('');
@@ -21,6 +22,16 @@
 				requireInteraction: true,
 			});
 		}
+	};
+
+	const showToast = () => {
+		toast.info('Test Toast', {
+			description: 'This is a test toast!',
+			action: {
+				label: 'dismiss',
+				onClick: () => {},
+			},
+		});
 	};
 
 	const addTodo = (): void => {
@@ -45,9 +56,9 @@
 		</span>
 	</h3>
 	<hr />
-	<h2>Push notifications</h2>
+	<h2>Notifications</h2>
 	<h3>
-		<span>Notification permissions are:</span>
+		<span>Push notification permissions are:</span>
 		<span style="color: {Push.isGranted() ? 'green' : 'orange'}">
 			{Push.getPermission()}
 		</span>
@@ -58,6 +69,8 @@
 	>
 		Send Test Push Notification
 	</button>
+	<br />
+	<button onclick={showToast}> Show Test Toast </button>
 	<hr />
 	<h2>Persisted Storage</h2>
 	<input
@@ -83,7 +96,6 @@
 	<hr />
 	<h2>Page Transitions</h2>
 	<button onclick={() => goto(resolve('/child'))}> Go To Child Page </button>
-	<!-- <img src="https://placehold.co/360x780/000000/FFF" alt="" /> -->
 </section>
 
 <style>
