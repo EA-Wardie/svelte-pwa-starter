@@ -40,32 +40,46 @@
    ],
    "screenshots": [
      {
-       "src": "screenshots/desktop_1.jpg",
-       "sizes": "2400x1350",
+       "src": "https://placehold.co/1920x1080/blue/FFF/png?text=desktop_1",
+       "sizes": "1920x1080",
        "type": "image/png",
        "form_factor": "wide",
-       "label": "Screenshot showing the main page as on desktop"
+       "label": "Desktop screenshot 1"
      },
      {
-       "src": "screenshots/desktop_2.jpg",
-       "sizes": "2400x1350",
+       "src": "https://placehold.co/1920x1080/red/FFF/png?text=desktop_2",
+       "sizes": "1920x1080",
        "type": "image/png",
        "form_factor": "wide",
-       "label": "Screenshot showing a child page as on desktop"
+       "label": "Desktop screenshot 2"
      },
      {
-       "src": "screenshots/mobile_1.jpg",
-       "sizes": "515x1144",
+       "src": "https://placehold.co/1920x1080/green/FFF/png?text=desktop_3",
+       "sizes": "1920x1080",
        "type": "image/png",
-       "form_factor": "narrow",
-       "label": "Screenshot showing the main page as on mobile"
+       "form_factor": "wide",
+       "label": "Desktop screenshot 3"
      },
-       {
-       "src": "screenshots/mobile_2.jpg",
-       "sizes": "515x1144",
+     {
+       "src": "https://placehold.co/360x780/blue/FFF/png?text=mobile_1",
+       "sizes": "360x780",
        "type": "image/png",
        "form_factor": "narrow",
-       "label": "Screenshot showing a child page as on mobile"
+       "label": "Mobile screenshot 1"
+     },
+     {
+       "src": "https://placehold.co/360x780/red/FFF/png?text=mobile_3",
+       "sizes": "360x780",
+       "type": "image/png",
+       "form_factor": "narrow",
+       "label": "Mobile screenshot 3"
+     },
+     {
+       "src": "https://placehold.co/360x780/green/FFF/png?text=mobile_3",
+       "sizes": "360x780",
+       "type": "image/png",
+       "form_factor": "narrow",
+       "label": "Mobile screenshot 3"
      }
    ]
 }

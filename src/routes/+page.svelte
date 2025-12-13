@@ -83,6 +83,7 @@
 	<hr />
 	<h2>Page Transitions</h2>
 	<button onclick={() => goto(resolve('/child'))}> Go To Child Page </button>
+	<!-- <img src="https://placehold.co/360x780/000000/FFF" alt="" /> -->
 </section>
 
 <style>
