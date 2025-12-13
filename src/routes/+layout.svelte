@@ -1,41 +1,26 @@
 <script lang="ts">
-	import { onNavigate } from '$app/navigation';
-	import '@khmyznikov/pwa-install';
-	import type { PWAInstallElement } from '@khmyznikov/pwa-install';
-	import { onMount } from 'svelte';
+	import Install from '$lib/utils/components/Install.svelte';
+	import { Navigation } from '$lib/utils/Navigation.svelte';
+	import { Network } from '$lib/utils/Network.svelte';
+	import { Push } from '$lib/utils/Push.svelte';
+	import { onDestroy } from 'svelte';
 
 	let { children } = $props();
-	let pwaInstallComponent: PWAInstallElement;
 
-	onMount(() => {
-		if (
-			pwaInstallComponent &&
-			typeof pwaInstallComponent.showDialog === 'function'
-		) {
-			pwaInstallComponent.showDialog(true);
-		}
-	});
+	Navigation.init();
+	Network.init();
+	Push.init();
 
-	onNavigate((navigation) => {
-		if (!document.startViewTransition) {
-			return;
-		}
-
-		return new Promise((resolve) => {
-			document.startViewTransition(async () => {
-				resolve();
-
-				await navigation.complete;
-			});
-		});
+	onDestroy(() => {
+		Network.kill();
 	});
 </script>
+
+<Install />
 
 <main>
 	{@render children()}
 </main>
-
-<pwa-install bind:this={pwaInstallComponent}></pwa-install>
 
 <style>
 </style>

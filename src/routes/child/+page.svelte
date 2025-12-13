@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { goto } from '$app/navigation';
 </script>
 
 <h1>Child Page</h1>

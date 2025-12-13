@@ -1,0 +1,54 @@
+import { createContext } from 'svelte';
+
+const Status = {
+	Online: 'online',
+	Offline: 'offline',
+} as const;
+
+type Status = (typeof Status)[keyof typeof Status];
+
+export const [getNetworkContext, setNetworkContext] = createContext<Network>();
+
+export class Network {
+	private _status: Status = $state(Status.Online);
+
+	constructor() {
+		if (navigator.onLine) {
+			this.online();
+		} else {
+			this.offline();
+		}
+
+		addEventListener('online', this.online);
+		addEventListener('offline', this.offline);
+	}
+
+	public static init() {
+		setNetworkContext(new Network());
+	}
+
+	public static kill() {
+		removeEventListener('online', getNetworkContext().online);
+		removeEventListener('offline', getNetworkContext().offline);
+	}
+
+	private online() {
+		this._status = Status.Online;
+	}
+
+	private offline() {
+		this._status = Status.Offline;
+	}
+
+	public static getStatus() {
+		return getNetworkContext()._status;
+	}
+
+	public static isOnline() {
+		return this.getStatus() === Status.Online;
+	}
+
+	public static isOffline() {
+		return this.getStatus() === Status.Offline;
+	}
+}
