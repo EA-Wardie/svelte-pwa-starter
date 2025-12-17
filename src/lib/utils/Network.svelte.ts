@@ -1,4 +1,4 @@
-import { createContext } from 'svelte';
+import { createContext, hasContext } from 'svelte';
 
 const Status = {
 	Online: 'online',
@@ -36,6 +36,10 @@ export class Network {
 	}
 
 	public static getStatus() {
+		if (!hasContext(Network)) {
+			return Status.Online;
+		}
+
 		return getNetworkContext()._status;
 	}
 

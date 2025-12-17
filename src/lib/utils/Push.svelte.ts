@@ -1,4 +1,4 @@
-import { createContext } from 'svelte';
+import { createContext, hasContext } from 'svelte';
 
 const Permission = {
 	Default: 'default',
@@ -14,20 +14,32 @@ export class Push {
 	private _permission: Permission = $state(Permission.Default);
 
 	constructor() {
+		this.permission(Permission.Default);
+	}
+
+	public static init(): Push {
+		const push = new Push();
+
+		setPushContext(push);
+
+		return push;
+	}
+
+	public prompt(): void {
 		Notification.requestPermission().then((permission) => {
 			this.permission(permission);
 		});
-	}
-
-	public static init() {
-		setPushContext(new Push());
 	}
 
 	private permission(permission: Permission) {
 		this._permission = permission;
 	}
 
-	public static getPermission() {
+	public static getPermission(): Permission {
+		if (!hasContext(Push)) {
+			return Permission.Default;
+		}
+
 		return getPushContext()._permission;
 	}
 
