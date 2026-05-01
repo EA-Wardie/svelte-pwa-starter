@@ -25,10 +25,10 @@
 	};
 
 	const showToast = () => {
-		toast.info('Test Toast', {
+		toast('Test Toast', {
 			description: 'This is a test toast!',
 			action: {
-				label: 'dismiss',
+				label: 'Dismiss',
 				onClick: () => {},
 			},
 		});

@@ -11,7 +11,7 @@
 	Push.init();
 </script>
 
-<Toaster richColors expand />
+<Toaster richColors expand theme="dark" />
 
 <main>
 	{@render children()}
